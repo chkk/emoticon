@@ -3,7 +3,7 @@ package com.v2ac.emoticon;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import static com.v2ac.emoticon.common.ImageMergeUtils.*;
+import static com.v2ac.emoticon.common.utils.ImageMergeUtils.*;
 
 public class ImageTest {
     /**

@@ -1,4 +1,4 @@
-package com.v2ac.emoticon.common;
+package com.v2ac.emoticon.common.response;
 
 /**
  * 错误码表.

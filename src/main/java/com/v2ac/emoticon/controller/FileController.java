@@ -1,8 +1,8 @@
 package com.v2ac.emoticon.controller;
 
 
-import com.v2ac.emoticon.common.Code;
-import com.v2ac.emoticon.common.Response;
+import com.v2ac.emoticon.common.response.Code;
+import com.v2ac.emoticon.common.response.Response;
 import com.v2ac.emoticon.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

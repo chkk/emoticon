@@ -1,7 +1,7 @@
 package com.v2ac.emoticon.controller;
 
 
-import com.v2ac.emoticon.common.Response;
+import com.v2ac.emoticon.common.response.Response;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

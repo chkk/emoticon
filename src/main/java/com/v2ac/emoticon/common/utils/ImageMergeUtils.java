@@ -1,4 +1,4 @@
-package com.v2ac.emoticon.common;
+package com.v2ac.emoticon.common.utils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
