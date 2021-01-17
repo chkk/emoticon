@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ImageMergeUtils {
+public class ImageUtils {
     /**
      * @param fileUrl 文件绝对路径或相对路径
      * @return 读取到的缓存图像
@@ -47,8 +47,8 @@ public class ImageMergeUtils {
     /**
      * 输出图片
      *
-     * @param buffImg  图像拼接叠加之后的BufferedImage对象
-     * @param savePath 图像拼接叠加之后的保存路径
+     * @param buffImg  图像的BufferedImage对象
+     * @param savePath 图像的保存路径
      */
     public static void generateSaveFile(BufferedImage buffImg, String savePath) {
         int temp = savePath.lastIndexOf(".") + 1;
@@ -65,28 +65,42 @@ public class ImageMergeUtils {
     }
 
     /**
-     * @param buffImg   源文件(BufferedImage)
-     * @param waterImg 水印文件(BufferedImage)
-     * @param x         距离右下角的X偏移量
-     * @param y         距离右下角的Y偏移量
-     * @param alpha     透明度, 选择值从0.0~1.0: 完全透明~完全不透明
+     * @param bgImg          背景文件(BufferedImage)
+     * @param waterImg       水印文件(BufferedImage)
+     * @param water_x        水印位置，横坐标,左上角0，往右递增
+     * @param water_y        水印位置，纵坐标,左上角0，往下递增
+     * @param waterImgWidth  水印宽
+     * @param waterImgHeight 水印高
+     * @param alpha          透明度, 选择值从0.0~1.0: 完全透明~完全不透明
      * @return BufferedImage
      * @throws IOException
      * @Title: 构造图片
      * @Description: 生成水印并返回java.awt.image.BufferedImage
      */
-    public static BufferedImage overlyingImage(BufferedImage buffImg, BufferedImage waterImg, int x, int y, float alpha) throws IOException {
+    public static BufferedImage overlyingImage(BufferedImage bgImg, BufferedImage waterImg, int water_x, int water_y, int waterImgWidth, int waterImgHeight, float alpha) {
 
         // 创建Graphics2D对象，用在底图对象上绘图
-        Graphics2D g2d = buffImg.createGraphics();
-        int waterImgWidth = waterImg.getWidth();// 获取层图的宽度
-        int waterImgHeight = waterImg.getHeight();// 获取层图的高度
+        Graphics2D g2d = bgImg.createGraphics();
+        if (waterImgWidth == 0 || waterImgHeight == 0) {
+            waterImgWidth = waterImg.getWidth();// 获取层图的宽度
+            waterImgHeight = waterImg.getHeight();// 获取层图的高度
+        }
         // 在图形和图像中实现混合和透明效果
         g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
         // 绘制
-        g2d.drawImage(waterImg, x, y, waterImgWidth, waterImgHeight, null);
+        g2d.drawImage(waterImg, water_x, water_y, waterImgWidth, waterImgHeight, null);
         g2d.dispose();// 释放图形上下文使用的系统资源
-        return buffImg;
+        return bgImg;
+    }
+
+    public static BufferedImage overlyingImage(BufferedImage bgImg, BufferedImage waterImg, int water_x, int water_y, float alpha) {
+
+        return overlyingImage(bgImg, waterImg, water_x, water_y, 0, 0, alpha);
+    }
+
+    public static BufferedImage overlyingImage(BufferedImage bgImg, BufferedImage waterImg, int water_x, int water_y) {
+
+        return overlyingImage(bgImg, waterImg, water_x, water_y, 0, 0, 1.0f);
     }
 
     /**
@@ -125,4 +139,5 @@ public class ImageMergeUtils {
 
         return DestImage;
     }
+
 }

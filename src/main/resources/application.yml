@@ -1,5 +1,7 @@
 server:
-  port: 7002
-  servlet:
-    session:
-      timeout: 60
+  tomcat:
+    uri-encoding: UTF-8
+  max-http-header-size: 80KB
+spring:
+  profiles:
+    active: @profileActive@

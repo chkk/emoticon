@@ -3,11 +3,11 @@ package com.v2ac.emoticon;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-import static com.v2ac.emoticon.common.utils.ImageMergeUtils.*;
+import static com.v2ac.emoticon.common.utils.ImageUtils.*;
 
 public class ImageTest {
     /**
-     * Java 测试图片叠加方法
+     * 测试图片叠加方法
      */
     public static void overlyingImageTest() {
 
@@ -19,7 +19,8 @@ public class ImageTest {
             BufferedImage bufferImage2 = getBufferedImage(waterFilePath);
 
             // 构建叠加层
-            BufferedImage buffImg = overlyingImage(bufferImage1, bufferImage2, 0, 0, 1.0f);
+//            BufferedImage buffImg = overlyingImage(bufferImage1, bufferImage2, 0, 100, 1.0f);
+            BufferedImage buffImg = overlyingImage(bufferImage1, bufferImage2, 0, 100, 1.0f);
             // 输出水印图片
             generateSaveFile(buffImg, saveFilePath);
         } catch (IOException e) {
@@ -27,7 +28,6 @@ public class ImageTest {
         }
 
     }
-
 
     /**
      * Java 测试图片合并方法
@@ -61,4 +61,5 @@ public class ImageTest {
         // 测试图片的垂直合并
         imageMargeTest();
     }
+
 }

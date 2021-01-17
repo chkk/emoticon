@@ -13,7 +13,6 @@ public class TestController {
     public Response setFileUpload() {
 
         Response res = Response.ok("hello emoticon!");
-
         return res;
     }
 
